@@ -86,6 +86,14 @@ Route::middleware(['auth'])->group(function () {
 
     // إضافة مسار النسخ الاحتياطي
     Route::get('/backup', [BackupController::class, 'create'])->name('backup');
+
+    // صفحة المساعد الذكي
+    Route::get('/assistant', function () {
+        return view('assistant');
+    })->name('assistant');
+    
+    // مسار API للمساعد الذكي
+    Route::post('/api/ask', [App\Http\Controllers\AssistantController::class, 'handle'])->name('assistant.ask');
 });
 
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
